@@ -89,11 +89,11 @@ def analyze_url(u):
     if '-' in host and host.count('-') >= 2:
         reasons.append("Too many hyphens in domain")
 
-    # ✅ New: Shortened URL detected
+    # New: Shortened URL detected
     if any(s in host for s in shorteners):
         reasons.append("Shortened URL detected (may hide real site)")
 
-    # ✅ New: WHOIS Check — Domain Age
+    # New: WHOIS Check — Domain Age
     domain_age = get_domain_age(host)
     if domain_age is not None:
         if domain_age < 180:  # less than 6 months
@@ -101,7 +101,7 @@ def analyze_url(u):
     else:
         reasons.append("WHOIS info unavailable")
 
-    # ✅ New: SSL Certificate expiry
+    # New: SSL Certificate expiry
     if p.scheme == "https":
         days_left = get_ssl_expiry(host)
         if days_left is not None:
