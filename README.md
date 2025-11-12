@@ -7,8 +7,8 @@ Phisher Detector provides an interactive and visually appealing way to analyze U
 
 ## 👨‍💻 Team Members
 
-| Name | Branch | Department | Roll Number |
-|------|---------|-------------|--------------|
+| Name | Branch | Department | 
+|------|---------|-------------|
 | Kushagra Dixit | CSE | Computer Science and Engineering 
 | Jatin Talya | CSE | Computer Science and Engineering 
 | Shalu Kumari | CSE | Computer Science and Engineering 
