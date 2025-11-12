@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+   
+<div class="box">
+
+    <h1>{{ mode }} Analysis Result</h1>
+
+    <div class="score-container">
+        <div class="score-bar" style="width: {{ result.score }}%; background-color: {{ result.color }};"></div>
+    </div>
+ <div id="result" class="result-box hidden">
+    <h2 class="result-title"></h2>
+    <p class="result-info"></p>
+</div>
+
+    <p><strong>Score:</strong> {{ result.score }} / 100</p>
+
+    <p class="badge" style="background: {{ result.color }};">
+        {{ result.verdict }}
+    </p>
+
+    {% if result.reasons %}
+    <h3>Reasons:</h3>
+    <ul>
+        {% for r in result.reasons %}
+        <li>{{ r }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <p><a href="/">← Analyze another</a></p>
+</div>
+</body>
+</html>

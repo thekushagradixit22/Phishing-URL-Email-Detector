@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Phishing Detector</title>
+
+   <link rel="stylesheet" href="static/style.css">
+
+
+</head>
+
+<body>
+    <canvas id="matrix"></canvas>
+
+    <div class="container">
+
+        <h2>Phishing URL / Email Detector</h2>
+
+        <form method="POST">
+            <div class="mode-select">
+                <label><input type="radio" name="mode" value="url" checked> URL</label>
+                <label><input type="radio" name="mode" value="email"> Email Body</label>
+            </div>
+
+            <textarea name="input_text" placeholder="Paste URL or email text here..." rows="6"></textarea>
+
+            <button type="submit">Analyze</button>
+        </form>
+
+        <div class="examples">
+            <h3>Sample examples</h3>
+            <ul>
+                <li><b>Suspicious:</b> http://example.com@evil.com/login</li>
+                <li><b>Suspicious:</b> http://192.168.1.100/login.php?user=abc</li>
+                <li><b>Safe:</b> https://www.google.com</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("matrix");
+        const ctx = canvas.getContext("2d");
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.onresize = resize;
+
+        const letters = "01";
+        const fontSize = 16;
+        let columns = Math.floor(canvas.width / fontSize);
+        let drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0,0,0,0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#00ff99";
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                let text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 40);
+    </script>
+
+</body>
+</html>
